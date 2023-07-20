@@ -30,11 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Update box location in overlay
                 document.getElementById('box-location').innerText = `Box Location: Latitude ${latitude}, Longitude ${longitude} + ${offsetDistance} meters east`;
 
+                // Calculate azimuth (bearing) angle between user's location and the cube
+                const azimuth = calculateAzimuth(latitude, longitude, cubePosition.x, cubePosition.z);
+                document.getElementById('azimuth-angle').innerText = `Azimuth Angle: ${azimuth?.toFixed(2)} degrees`;
+
                 // Get device orientation (alpha value)
                 window.addEventListener('deviceorientation', function (event) {
                     const alpha = event.alpha;
                     // Update device direction in overlay
-                    document.getElementById('device-direction').innerText = `Device Direction: ${alpha.toFixed(2)} degrees`;
+                    document.getElementById('device-direction').innerText = `Device Direction: ${alpha?.toFixed(2)} degrees`;
                 });
             },
             function (error) {
@@ -45,3 +49,18 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Geolocation is not supported in this browser.');
     }
 });
+
+// Function to calculate the azimuth angle between two coordinates
+function calculateAzimuth(lat1, lon1, lat2, lon2) {
+    const phi1 = (lat1 * Math.PI) / 180;
+    const phi2 = (lat2 * Math.PI) / 180;
+    const deltaLambda = ((lon2 - lon1) * Math.PI) / 180;
+
+    const y = Math.sin(deltaLambda) * Math.cos(phi2);
+    const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaLambda);
+    let angle = Math.atan2(y, x);
+
+    angle = (angle * 180) / Math.PI;
+    angle = (angle + 360) % 360; // Normalize to positive angles
+    return angle;
+}
