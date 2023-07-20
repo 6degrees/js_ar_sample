@@ -1,0 +1,20 @@
+{
+  "name": "js_ar_sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "dependencies": {
+    "@ar-js-org/ar.js": "3.4.2",
+    "three": "^0.154.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "scripts": {
+    "build": "npx webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
