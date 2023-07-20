@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const altitude = position.coords.altitude;
 
                 // Update user location in overlay
-                document.getElementById('user-location').innerText = `User Location: Latitude ${latitude}, Longitude ${longitude}`;
+                document.getElementById('user-location').innerText = `User Location: Alt ${altitude}, Lat ${latitude}, Lng ${longitude}`;
 
                 // Create and position the cube using three.js
                 const cube = new THREE.Mesh(
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scene.object3D.add(cube);
 
                 // Update box location in overlay
-                document.getElementById('box-location').innerText = `Box Location: Latitude ${latitude}, Longitude ${longitude} + ${offsetDistance} meters east`;
+                document.getElementById('box-location').innerText = `Box Location: Alt ${altitude}, Lat ${latitude}, Lng ${longitude} + ${offsetDistance} meters east`;
 
                 // Calculate azimuth (bearing) angle between user's location and the cube
                 const azimuth = calculateAzimuth(latitude, longitude, cubePosition.x, cubePosition.z);
