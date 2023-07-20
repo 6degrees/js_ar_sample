@@ -17,15 +17,24 @@
     <!-- Your script file -->
     <script src="script.js"></script>
 </head>
-<body>
-    <a-scene embedded arjs="sourceType: webcam;">
-        <!-- Cube representation -->
-        <a-entity geometry="primitive: box; depth: 0.5; height: 0.5; width: 0.5"
-                  material="color: #FF6347"
-                  id="cube">
-        </a-entity>
-        <a-entity camera></a-entity>
-    </a-scene>
+<body style="">
+    <div class="container">
+        <a-scene embedded arjs="sourceType: webcam;" style="z-index:5">
+            <!-- Cube representation -->
+            <a-entity geometry="primitive: box; depth: 0.5; height: 0.5; width: 0.5"
+                      material="color: #FF6347"
+                      id="cube">
+            </a-entity>
+            <a-entity camera></a-entity>
+        </a-scene>
+    </div>
+
+    <!-- Overlay information box -->
+    <div id="overlay-info" style="position:absolute; top:0; left:0; width:100%; height:20vh; padding:1rem; background:rgba(255,0,0,0.5); z-index:999">
+        <p id="user-location">User Location: </p>
+        <p id="box-location">Box Location: </p>
+        <p id="device-direction">Device Direction: </p>
+    </div>
 
 </body>
 </html>
